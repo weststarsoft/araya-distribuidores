@@ -13,8 +13,8 @@
   SLOT                  ONDE                        PROPORÇÃO SUGERIDA
   logo                  Topo da abertura            JÁ APLICADO (fotos/logo.png)
   origem-1..4           Carrossel da abertura       JÁ APLICADO (fotos/origem-1..4.jpg)
-  hero                  Seção "Sua região..."       16:9 horizontal, 1920x1080+ (foto ou vídeo)
-  proposito             Seção "Propósito"           16:9 horizontal
+  hero                  Seção "Sua região..."       JÁ APLICADO (fotos/hero.jpg)
+  proposito             Seção "Propósito"           JÁ APLICADO (fotos/proposito.jpg)
   selo                  Seção "Cipá Pro System"     PNG transparente, quadrado
   produto-1..6          Catálogo                    3:4 vertical, fundo limpo
   resultado-1..4        Seção "Resultados"          4:5 vertical (antes/depois)
@@ -135,10 +135,10 @@ img{max-width:100%;display:block;border-radius:10px}
   isolation:isolate;
 }
 .hero-midia{position:absolute;inset:0;z-index:-2}
-.hero-midia .slot{height:100%;border-radius:0;border:none;border-bottom:1px solid rgba(192,141,74,.35)}
+.hero-midia img{width:100%;height:100%;object-fit:cover;border-radius:0;display:block}
 .hero::after{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(21,41,31,.72) 0%,rgba(21,41,31,.45) 38%,rgba(21,41,31,.94) 100%);
+  background:linear-gradient(180deg,rgba(21,41,31,.78) 0%,rgba(21,41,31,.62) 40%,rgba(21,41,31,.95) 100%);
 }
 .hero-interno{
   width:min(1180px,92vw);margin-inline:auto;
@@ -236,9 +236,10 @@ img{max-width:100%;display:block;border-radius:10px}
 .produto{border-bottom:1px solid rgba(192,141,74,.3)}
 .produto-cabeca{
   width:100%;background:none;border:none;color:inherit;cursor:pointer;
-  display:grid;grid-template-columns:132px 1fr auto;gap:clamp(1.2rem,3vw,2.4rem);
+  display:grid;grid-template-columns:200px 1fr auto;gap:clamp(1.4rem,3vw,2.6rem);
   align-items:center;padding:1.6rem 0;text-align:left;font:inherit;
 }
+.produto-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px}
 .produto-foto .slot{font-size:.72rem;padding:.6rem}
 .produto-foto .slot b{font-size:.78rem}
 .produto-foto .slot span{display:none}
@@ -253,7 +254,7 @@ img{max-width:100%;display:block;border-radius:10px}
 .produto[open] .mais{background:rgba(192,141,74,.18);transform:rotate(45deg)}
 .mais svg{width:16px;height:16px}
 .produto-corpo{
-  display:grid;grid-template-columns:132px 1fr;gap:clamp(1.2rem,3vw,2.4rem);
+  display:grid;grid-template-columns:200px 1fr;gap:clamp(1.2rem,3vw,2.4rem);
   padding:0 0 2.4rem;
 }
 .produto-detalhe{display:grid;gap:1.6rem}
@@ -349,7 +350,7 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
 }
 @media (max-width:680px){
   .trilho > .foto{flex:0 0 76%}
-  .produto-cabeca{grid-template-columns:92px 1fr auto;gap:1rem;padding:1.3rem 0}
+  .produto-cabeca{grid-template-columns:130px 1fr auto;gap:1rem;padding:1.3rem 0}
   .produto-corpo{grid-template-columns:1fr;padding-bottom:2rem}
   .form-grade{grid-template-columns:1fr}
   .mais{width:36px;height:36px}
@@ -399,8 +400,7 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
 <!-- ============ CONVOCAÇÃO ============ -->
 <section class="hero">
   <div class="hero-midia">
-    <!-- TROCAR: foto ou vídeo da aldeia em tela cheia -->
-    <div class="slot"><b>HERO</b>Foto ou vídeo da aldeia<span>16:9 · 1920×1080 ou maior</span></div>
+    <img src="fotos/hero.jpg" alt="Tronco do cipá na floresta amazônica">
   </div>
   <div class="hero-interno">
     <div>
@@ -431,8 +431,7 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
         </div>
       </div>
       <div class="rev">
-        <!-- TROCAR: foto da comunidade, roda, pintura corporal, crianças -->
-        <div class="slot r-4x5"><b>PROPÓSITO</b>Comunidade Mushuinu-Yawanawá<span>4:5 vertical</span></div>
+        <img src="fotos/proposito.jpg" alt="Liderança da Aldeia Mushuinu, povo Yawanawá" loading="lazy">
       </div>
     </div>
   </div>
@@ -576,12 +575,12 @@ const WHATSAPP = "0000000000000";
 /* ============================================================
    2. PRODUTOS
    Para usar a foto real, preencha "img" com o caminho do arquivo.
-   Ex.: img: "fotos/shampoo-detox.jpg"
+   Ex.: img: "fotos/shampoo.jpg"
    ============================================================ */
 const PRODUTOS = [
   {
     nome: "Shampoo Detox",
-    img: "",
+    img: "fotos/shampoo.jpg",
     volume: "1 L",
     claim: "Limpeza equilibrada que remove impurezas e resíduos sem ressecar, com sensação de frescor.",
     ativos: [
@@ -594,7 +593,7 @@ const PRODUTOS = [
   },
   {
     nome: "Máscara Capilar Efeito Antifrizz",
-    img: "",
+    img: "fotos/mascara-antifrizz.jpg",
     volume: "1 L",
     claim: "Tratamento intensivo para controle do frizz e redução de volume, com fios alinhados e disciplinados.",
     ativos: [
@@ -610,7 +609,7 @@ const PRODUTOS = [
   },
   {
     nome: "Máscara Estabilizadora de pH",
-    img: "",
+    img: "fotos/mascara-ph.jpg",
     volume: "500 g",
     claim: "Hidratação intensa, maciez e emoliência, com toque sedoso e maior penteabilidade.",
     ativos: [
@@ -627,7 +626,7 @@ const PRODUTOS = [
   },
   {
     nome: "Leave-in Finalizador Térmico",
-    img: "",
+    img: "fotos/leave-in.jpg",
     volume: "200 ml",
     claim: "Hidrata, facilita o desembaraço e forma um filme condicionante que protege da umidade.",
     ativos: [
@@ -642,7 +641,7 @@ const PRODUTOS = [
   },
   {
     nome: "Óleo Capilar",
-    img: "",
+    img: "fotos/oleo.jpg",
     volume: "60 ml",
     claim: "Brilho intenso, maciez e toque sedoso, com acabamento leve e luminoso nas pontas.",
     ativos: [
@@ -655,7 +654,7 @@ const PRODUTOS = [
   },
   {
     nome: "Perfume Capilar",
-    img: "",
+    img: "fotos/perfume.jpg",
     volume: "60 ml",
     claim: "Floral Musk. Perfuma delicadamente os fios e proporciona sensação de frescor ao longo do dia, sem pesar.",
     ativos: [
