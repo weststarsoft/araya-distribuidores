@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arayã Professional — Programa de Distribuidores 2026/2027</title>
+<meta name="description" content="Programa de Distribuidores Oficiais Arayã Professional. Uma marca nascida na Aldeia Mushuinu, território Yawanawá.">
+
+<!--
+================================================================
+  GUIA DE IMAGENS — todos os espaços marcados em dourado tracejado
+================================================================
+  SLOT                  ONDE                        PROPORÇÃO SUGERIDA
+  logo                  Topo da abertura            JÁ APLICADO (fotos/logo.png)
+  origem-1..4           Carrossel da abertura       JÁ APLICADO (fotos/origem-1..4.jpg)
+  hero                  Seção "Sua região..."       16:9 horizontal, 1920x1080+ (foto ou vídeo)
+  proposito             Seção "Propósito"           16:9 horizontal
+  selo                  Seção "Cipá Pro System"     PNG transparente, quadrado
+  produto-1..6          Catálogo                    3:4 vertical, fundo limpo
+  resultado-1..4        Seção "Resultados"          4:5 vertical (antes/depois)
+
+  COMO TROCAR: cada ponto de imagem tem um comentário marcado com a palavra TROCAR.
+  Basta substituir a div de classe "slot" por uma tag de imagem apontando para o arquivo.
+  Nos produtos, preencher o campo "img" no array PRODUTOS lá embaixo.
+
+  WHATSAPP: alterar a constante WHATSAPP no final do arquivo.
+================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  color-scheme: dark;
+  --verde-fundo:#15291F;
+  --verde:#243D2F;
+  --verde-alto:#2E4C3A;
+  --ouro:#C08D4A;
+  --ouro-claro:#E3BE85;
+  --areia:#EDE6DA;
+  --areia-suave:#B9C4B5;
+  --branco:#FFFFFF;
+
+  --display:"Jost","Avenir Next",system-ui,sans-serif;
+  --corpo:"Figtree","Helvetica Neue",system-ui,sans-serif;
+
+  --kene:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23C08D4A' stroke-width='1.3'%3E%3Cpath d='M0 14 L14 0 L28 14 L42 0 L56 14 L42 28 L28 14 L14 28 Z'/%3E%3Cpath d='M14 14 L21 7 L28 14 L21 21 Z'/%3E%3Cpath d='M42 14 L49 7 L56 14 L49 21 Z'/%3E%3C/g%3E%3C/svg%3E");
+
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root:not([data-theme="light"]){ color-scheme: dark; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ color-scheme: dark; } }
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+body{
+  margin:0;
+  background:var(--verde-fundo);
+  color:var(--areia);
+  font-family:var(--corpo);
+  font-size:1.0625rem;
+  line-height:1.65;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  text-align:left;
+}
+
+/* ---------- estrutura ---------- */
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.narrow{max-width:62ch}
+section{padding:clamp(4.5rem,10vw,8.5rem) 0;position:relative}
+
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-0.01em;margin:0}
+h1{font-size:clamp(2.1rem,5.6vw,4.1rem);line-height:1.06;font-weight:300}
+h2{font-size:clamp(1.75rem,3.6vw,2.9rem);line-height:1.12;margin-bottom:1.6rem}
+h3{font-size:1.3rem;line-height:1.25}
+p{margin:0 0 1.15rem}
+a{color:inherit}
+
+.sobre{ /* pequena linha-guia de seção, não um rótulo em caixa alta */
+  font-family:var(--display);
+  font-size:.95rem;
+  letter-spacing:.14em;
+  color:var(--ouro);
+  margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.sobre::before{content:"";width:34px;height:1px;background:var(--ouro);flex:none}
+
+.banda{height:28px;background-image:var(--kene);background-repeat:repeat-x;opacity:.5}
+.banda.curta{width:140px;opacity:.75;margin-bottom:2rem}
+
+.moldura{
+  border:1px solid rgba(192,141,74,.45);
+  border-radius:14px;
+  padding:clamp(1.6rem,4vw,3.2rem);
+}
+
+/* ---------- placeholders de imagem ---------- */
+.slot{
+  position:relative;
+  width:100%;
+  border:1.5px dashed rgba(192,141,74,.6);
+  border-radius:10px;
+  background:
+    repeating-linear-gradient(135deg,rgba(192,141,74,.05) 0 10px,transparent 10px 20px),
+    var(--verde);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.35rem;text-align:center;padding:1.25rem;
+  color:var(--ouro-claro);
+  font-family:var(--display);
+  font-size:.9rem;letter-spacing:.06em;
+}
+.slot b{font-weight:500;font-size:1rem;letter-spacing:.1em;color:var(--ouro)}
+.slot span{font-size:.78rem;color:var(--areia-suave);letter-spacing:.02em;font-family:var(--corpo)}
+.r-16x9{aspect-ratio:16/9}
+.r-3x4{aspect-ratio:3/4}
+.r-4x5{aspect-ratio:4/5}
+.r-1x1{aspect-ratio:1/1}
+img{max-width:100%;display:block;border-radius:10px}
+
+/* ---------- abertura ---------- */
+.hero{
+  min-height:100svh;
+  padding:0;
+  display:grid;
+  place-items:stretch;
+  isolation:isolate;
+}
+.hero-midia{position:absolute;inset:0;z-index:-2}
+.hero-midia .slot{height:100%;border-radius:0;border:none;border-bottom:1px solid rgba(192,141,74,.35)}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(21,41,31,.72) 0%,rgba(21,41,31,.45) 38%,rgba(21,41,31,.94) 100%);
+}
+.hero-interno{
+  width:min(1180px,92vw);margin-inline:auto;
+  padding:clamp(2.5rem,7vh,5rem) 0 clamp(2.5rem,6vh,4rem);
+  display:flex;flex-direction:column;justify-content:center;gap:2.5rem;
+  min-height:100svh;
+}
+.hero-titulo{
+  font-family:var(--display);font-weight:300;letter-spacing:-0.01em;margin:0;
+  font-size:clamp(2.1rem,5.6vw,4.1rem);line-height:1.06;
+  max-width:17ch;text-shadow:0 2px 24px rgba(0,0,0,.45);
+}
+.hero-linha{
+  margin-top:1.4rem;max-width:46ch;color:var(--areia);
+  font-size:clamp(1rem,1.6vw,1.2rem);
+}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem}
+
+/* ---------- botões ---------- */
+.btn{
+  font-family:var(--display);font-size:1rem;letter-spacing:.04em;
+  padding:.95rem 1.8rem;border-radius:999px;border:1px solid var(--ouro);
+  background:transparent;color:var(--ouro-claro);cursor:pointer;
+  text-decoration:none;display:inline-block;
+  transition:background .25s ease,color .25s ease;
+}
+.btn:hover{background:rgba(192,141,74,.14)}
+.btn-cheio{
+  background:linear-gradient(135deg,#C08D4A,#E3BE85 55%,#B07E3C);
+  color:#17251C;border-color:transparent;font-weight:500;
+}
+.btn-cheio:hover{filter:brightness(1.07);background:linear-gradient(135deg,#C08D4A,#E3BE85 55%,#B07E3C)}
+:focus-visible{outline:2px solid var(--ouro-claro);outline-offset:3px;border-radius:6px}
+
+/* ---------- origem ---------- */
+.origem{background:var(--verde-fundo);padding-top:clamp(3rem,8vh,5.5rem)}
+.marca{width:min(270px,56vw);margin-bottom:clamp(2.2rem,6vw,3.6rem)}
+.marca img{width:100%;height:auto;border-radius:0}
+
+/* carrossel da origem */
+.carrossel{margin-top:clamp(2.2rem,5vw,3.2rem)}
+.trilho{
+  --gap:clamp(.8rem,2vw,1.4rem);
+  display:flex;gap:var(--gap);
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;padding-bottom:.25rem;
+}
+.trilho::-webkit-scrollbar{display:none}
+.trilho > .foto{flex:0 0 calc((100% - var(--gap) * 2) / 3);scroll-snap-align:start}
+.trilho img{width:100%;aspect-ratio:3/4;object-fit:cover}
+@media (prefers-reduced-motion: reduce){ .trilho{scroll-behavior:auto} }
+.controles{display:flex;align-items:center;gap:.7rem;margin-top:1.5rem}
+.seta{
+  width:44px;height:44px;border-radius:50%;flex:none;
+  border:1px solid rgba(192,141,74,.6);background:transparent;color:var(--ouro-claro);
+  display:grid;place-items:center;cursor:pointer;transition:background .25s ease;
+}
+.seta:hover{background:rgba(192,141,74,.16)}
+.seta svg{width:15px;height:15px}
+.pontos{display:flex;gap:.5rem;margin-left:auto}
+.ponto{width:30px;height:2px;padding:0;border:none;cursor:pointer;background:rgba(192,141,74,.3);transition:background .3s ease}
+.ponto.ativo{background:var(--ouro)}
+.citacao{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.3rem,2.6vw,1.95rem);line-height:1.35;
+  color:var(--ouro-claro);max-width:24ch;margin:3rem 0 0;
+}
+
+/* ---------- propósito ---------- */
+.proposito{background:var(--verde)}
+.proposito .moldura{background:rgba(21,41,31,.5)}
+.proposito-grade{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+
+/* ---------- tecnologia ---------- */
+.tec{background:var(--verde-fundo)}
+.tec-grade{display:grid;grid-template-columns:260px 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.tec-selo .slot{border-radius:50%;aspect-ratio:1}
+.tec-lista{list-style:none;padding:0;margin:1.8rem 0 0;display:grid;gap:.9rem}
+.tec-lista li{display:flex;gap:.9rem;align-items:baseline}
+.tec-lista li::before{content:"";width:9px;height:9px;flex:none;background:var(--ouro);transform:rotate(45deg);translate:0 -1px}
+
+/* ---------- catálogo ---------- */
+.catalogo{background:var(--verde)}
+.produtos{margin-top:3rem;border-top:1px solid rgba(192,141,74,.3)}
+.produto{border-bottom:1px solid rgba(192,141,74,.3)}
+.produto-cabeca{
+  width:100%;background:none;border:none;color:inherit;cursor:pointer;
+  display:grid;grid-template-columns:132px 1fr auto;gap:clamp(1.2rem,3vw,2.4rem);
+  align-items:center;padding:1.6rem 0;text-align:left;font:inherit;
+}
+.produto-foto .slot{font-size:.72rem;padding:.6rem}
+.produto-foto .slot b{font-size:.78rem}
+.produto-foto .slot span{display:none}
+.produto-nome{font-family:var(--display);font-size:clamp(1.15rem,2.2vw,1.65rem);line-height:1.2;color:var(--branco)}
+.produto-claim{color:var(--areia-suave);font-size:.98rem;margin-top:.4rem;max-width:46ch}
+.produto-volume{font-family:var(--display);color:var(--ouro);font-size:.95rem;letter-spacing:.06em;margin-top:.7rem}
+.mais{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(192,141,74,.6);
+  display:grid;place-items:center;flex:none;color:var(--ouro-claro);
+  transition:background .25s ease,transform .3s ease;
+}
+.produto[open] .mais{background:rgba(192,141,74,.18);transform:rotate(45deg)}
+.mais svg{width:16px;height:16px}
+.produto-corpo{
+  display:grid;grid-template-columns:132px 1fr;gap:clamp(1.2rem,3vw,2.4rem);
+  padding:0 0 2.4rem;
+}
+.produto-detalhe{display:grid;gap:1.6rem}
+.ativos{list-style:none;padding:0;margin:0;display:grid;gap:.75rem}
+.ativos li{padding-left:1.1rem;border-left:1px solid rgba(192,141,74,.5);font-size:.97rem}
+.ativos strong{font-weight:500;color:var(--ouro-claro);font-family:var(--display)}
+.rotulo-bloco h4{
+  font-family:var(--display);font-weight:500;font-size:1rem;color:var(--ouro);
+  margin:0 0 .5rem;letter-spacing:.04em;
+}
+.selos{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.2rem}
+.selos li{
+  list-style:none;font-size:.82rem;letter-spacing:.03em;
+  border:1px solid rgba(192,141,74,.45);border-radius:999px;padding:.3rem .85rem;
+  color:var(--ouro-claro);
+}
+
+/* ---------- resultados ---------- */
+.resultados{background:var(--verde-fundo)}
+.resultados-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,2vw,1.4rem);margin-top:3rem}
+
+/* ---------- argumentos ---------- */
+.porque{background:var(--verde)}
+.argumentos{list-style:none;padding:0;margin:3rem 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.argumentos li{
+  padding:1.6rem 1.8rem 1.6rem 0;
+  border-top:1px solid rgba(192,141,74,.3);
+  display:flex;gap:1.1rem;align-items:flex-start;font-size:1.02rem;
+}
+.argumentos li:nth-child(odd){padding-right:2.6rem}
+.argumentos li::before{
+  content:"";width:11px;height:11px;flex:none;margin-top:.55rem;
+  background:var(--ouro);transform:rotate(45deg);
+}
+
+/* ---------- programa + cadastro ---------- */
+.programa{background:var(--verde-fundo);position:relative}
+.programa-topo{text-align:left;max-width:54ch}
+.form-grade{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:2.4rem}
+.campo{display:flex;flex-direction:column;gap:.45rem}
+.campo.largo{grid-column:1/-1}
+.campo label{font-family:var(--display);font-size:.92rem;letter-spacing:.05em;color:var(--ouro-claro)}
+.campo input{
+  font:inherit;font-size:1rem;color:var(--areia);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(192,141,74,.35);border-radius:9px;
+  padding:.85rem 1rem;
+  transition:border-color .2s ease,background .2s ease;
+}
+.campo input::placeholder{color:rgba(185,196,181,.55)}
+.campo input:focus{border-color:var(--ouro);background:rgba(255,255,255,.07);outline:none}
+.form-acao{margin-top:1.9rem;display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.aviso{font-size:.88rem;color:var(--areia-suave);max-width:40ch}
+.aviso.erro{color:#F0B9A0}
+.config{
+  display:none;font-size:.85rem;color:#F0B9A0;
+  border:1px dashed rgba(240,185,160,.5);border-radius:8px;padding:.6rem .9rem;
+}
+.config.ativo{display:block}
+
+/* ---------- rodapé ---------- */
+footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,6vw,4.5rem) + env(safe-area-inset-bottom,0px))}
+.rodape-grade{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-end}
+.assinatura{font-family:var(--display);font-size:clamp(1.1rem,2.2vw,1.5rem);line-height:1.3;color:var(--ouro-claro);max-width:22ch}
+.rodape-info{font-size:.9rem;color:var(--areia-suave);max-width:34ch}
+
+/* ---------- whatsapp flutuante ---------- */
+.flutua{
+  position:fixed;right:1.1rem;z-index:30;
+  bottom:calc(1.1rem + env(safe-area-inset-bottom,0px));
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#C08D4A,#E3BE85);
+  display:grid;place-items:center;color:#16261D;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:transform .25s ease;
+}
+.flutua:hover{transform:scale(1.06)}
+.flutua svg{width:28px;height:28px}
+
+/* ---------- revelação ---------- */
+.rev{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rev.visivel{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){ .rev{opacity:1;transform:none;transition:none} }
+
+/* ---------- responsivo ---------- */
+@media (max-width:900px){
+  .proposito-grade,.tec-grade{grid-template-columns:1fr}
+  .tec-selo{width:min(200px,50vw)}
+  .argumentos{grid-template-columns:1fr}
+  .argumentos li:nth-child(odd){padding-right:0}
+  .resultados-grade{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .trilho > .foto{flex:0 0 calc((100% - var(--gap)) / 2)}
+}
+@media (max-width:680px){
+  .trilho > .foto{flex:0 0 76%}
+  .produto-cabeca{grid-template-columns:92px 1fr auto;gap:1rem;padding:1.3rem 0}
+  .produto-corpo{grid-template-columns:1fr;padding-bottom:2rem}
+  .form-grade{grid-template-columns:1fr}
+  .mais{width:36px;height:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ABERTURA — A ORIGEM ============ -->
+<header class="origem" id="origem">
+  <div class="wrap">
+    <div class="marca">
+      <img src="fotos/logo.png" alt="Arayã Professional">
+    </div>
+
+    <p class="sobre">A origem</p>
+    <h1 class="narrow">A verdadeira marca indígena, nascida no coração da Amazônia.</h1>
+    <div class="narrow">
+      <p>A Arayã Professional nasceu dentro da Aldeia Mushuinu, no território do povo Yawanawá, no Acre, carregando em sua essência a ancestralidade, a identidade e a força da cultura indígena amazônica.</p>
+      <p>Nossa história não começou apenas com a criação de uma linha de cosméticos. Começou com uma conexão verdadeira com a floresta, suas tradições e os conhecimentos ancestrais de um povo.</p>
+      <p>Dessa inspiração nasceu uma marca que une identidade indígena, natureza, inovação e tecnologia cosmética profissional, desenvolvida para conquistar espaço nos salões de beleza do Brasil e do mundo.</p>
+    </div>
+
+    <!-- carrossel: 4 fotos verticais 3:4 -->
+    <div class="carrossel">
+      <div class="trilho" id="trilho" tabindex="0" role="group" aria-label="Fotos da aldeia">
+        <div class="foto"><img src="fotos/origem-1.jpg" alt="Shampoo Detox Cipá Native sob a copa das árvores" loading="lazy"></div>
+        <div class="foto"><img src="fotos/origem-2.jpg" alt="Mulher Yawanawá com pintura tradicional ao lado do Leave-in Cipá Native" loading="lazy"></div>
+        <div class="foto"><img src="fotos/origem-3.jpg" alt="Floresta amazônica no território Yawanawá" loading="lazy"></div>
+        <div class="foto"><img src="fotos/origem-4.jpg" alt="Linha Cipá Native completa com cocos gravados da marca" loading="lazy"></div>
+      </div>
+      <div class="controles">
+        <button class="seta" type="button" id="anterior" aria-label="Foto anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="seta" type="button" id="proxima" aria-label="Próxima foto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="pontos" id="pontos"></div>
+      </div>
+    </div>
+
+    <p class="citacao">Da ancestralidade da Amazônia para a beleza do mundo.</p>
+  </div>
+</header>
+
+<!-- ============ CONVOCAÇÃO ============ -->
+<section class="hero">
+  <div class="hero-midia">
+    <!-- TROCAR: foto ou vídeo da aldeia em tela cheia -->
+    <div class="slot"><b>HERO</b>Foto ou vídeo da aldeia<span>16:9 · 1920×1080 ou maior</span></div>
+  </div>
+  <div class="hero-interno">
+    <div>
+      <div class="banda curta"></div>
+      <h2 class="hero-titulo">Sua região pode ser o próximo território Arayã Professional.</h2>
+      <p class="hero-linha">Estamos selecionando distribuidoras de cosméticos profissionais para a expansão nacional da Arayã Professional em 2026/2027.</p>
+      <div class="hero-acoes">
+        <a class="btn btn-cheio" href="#cadastro">Cadastrar minha distribuidora</a>
+        <a class="btn" href="#catalogo">Conhecer a linha</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banda"></div>
+
+<!-- ============ PROPÓSITO ============ -->
+<section class="proposito" id="proposito">
+  <div class="wrap">
+    <div class="proposito-grade">
+      <div>
+        <p class="sobre">Propósito</p>
+        <h2>Crescer também significa fortalecer as raízes.</h2>
+        <div class="moldura">
+          <p>Parte das vendas dos nossos produtos será destinada a iniciativas de fortalecimento, valorização e preservação da cultura indígena da Aldeia Mushuinu-Yawanawá.</p>
+          <p>Nosso compromisso é contribuir para que as tradições, os saberes ancestrais e a identidade cultural desse povo continuem vivos e sejam transmitidos às futuras gerações.</p>
+          <p style="margin-bottom:0">Cada produto comercializado representa mais do que uma oportunidade de negócio: representa também uma contribuição para a valorização de uma história, de uma cultura e de um povo.</p>
+        </div>
+      </div>
+      <div class="rev">
+        <!-- TROCAR: foto da comunidade, roda, pintura corporal, crianças -->
+        <div class="slot r-4x5"><b>PROPÓSITO</b>Comunidade Mushuinu-Yawanawá<span>4:5 vertical</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECNOLOGIA ============ -->
+<section class="tec" id="tecnologia">
+  <div class="wrap">
+    <div class="tec-grade">
+      <div class="tec-selo rev">
+        <!-- TROCAR: selo Cipá Pro System em PNG transparente -->
+        <div class="slot r-1x1"><b>SELO</b>Cipá Pro System<span>PNG quadrado</span></div>
+      </div>
+      <div>
+        <p class="sobre">Tecnologia exclusiva</p>
+        <h2>Cipá Pro System<span style="font-size:.5em;vertical-align:super">™</span></h2>
+        <p class="narrow">Traduz a força da natureza em uma tecnologia exclusiva para o cuidado capilar. Desenvolvido com um complexo de ativos, está presente em toda a linha Cipá Native e entrega:</p>
+        <ul class="tec-lista narrow">
+          <li>Hidratação dos fios</li>
+          <li>Redução do frizz</li>
+          <li>Proteção contra os efeitos da umidade</li>
+          <li>Fios mais macios, sedosos, brilhantes e com aspecto saudável</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO ============ -->
+<section class="catalogo" id="catalogo">
+  <div class="wrap">
+    <p class="sobre">A linha</p>
+    <h2 class="narrow">Cipá Native — seis produtos de uso profissional.</h2>
+    <p class="narrow">Toque em cada produto para ver ativos, modo de uso e apresentação.</p>
+    <div class="produtos" id="produtos"></div>
+  </div>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section class="resultados" id="resultados">
+  <div class="wrap">
+    <p class="sobre">Resultados</p>
+    <h2 class="narrow">Trabalhos realizados com a linha completa.</h2>
+    <div class="resultados-grade rev">
+      <!-- TROCAR: antes/depois, corte, progressiva, cabelo ondulado -->
+      <div class="slot r-4x5"><b>RESULTADO 1</b>Antes e depois<span>4:5</span></div>
+      <div class="slot r-4x5"><b>RESULTADO 2</b>Antes e depois<span>4:5</span></div>
+      <div class="slot r-4x5"><b>RESULTADO 3</b>Corte ou progressiva<span>4:5</span></div>
+      <div class="slot r-4x5"><b>RESULTADO 4</b>Finalização<span>4:5</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="banda"></div>
+
+<!-- ============ POR QUE REPRESENTAR ============ -->
+<section class="porque" id="parceria">
+  <div class="wrap">
+    <p class="sobre">Parceria</p>
+    <h2 class="narrow">Não procuramos apenas empresas para vender. Selecionamos parceiros.</h2>
+    <p class="narrow">Procuramos distribuidoras que desejam ir além da comercialização de produtos e fazer parte da construção de uma marca com história, propósito, identidade própria e grande potencial de expansão.</p>
+    <ul class="argumentos">
+      <li>Marca com origem na Aldeia Mushuinu, território Yawanawá</li>
+      <li>Identidade indígena autêntica e posicionamento premium</li>
+      <li>Parte das vendas destinada ao fortalecimento da cultura Mushuinu-Yawanawá</li>
+      <li>Exclusividade territorial, mediante avaliação comercial</li>
+      <li>Portfólio de cosméticos profissionais com tecnologia e diferenciação</li>
+      <li>Materiais de marketing e apoio ao desenvolvimento comercial</li>
+      <li>Participação na expansão nacional de uma marca nascida na Amazônia</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CADASTRO ============ -->
+<section class="programa" id="cadastro">
+  <div class="wrap">
+    <div class="programa-topo">
+      <p class="sobre">Programa de Distribuidores Oficiais 2026/2027</p>
+      <h2>Candidate sua distribuidora.</h2>
+      <p>Preencha os dados abaixo. Ao enviar, abrimos o WhatsApp com sua candidatura pronta e nosso time retorna com os próximos passos do processo de seleção.</p>
+    </div>
+
+    <form class="moldura" id="form" style="margin-top:2.4rem" novalidate>
+      <div class="form-grade">
+        <div class="campo">
+          <label for="empresa">Nome da distribuidora</label>
+          <input id="empresa" name="empresa" type="text" placeholder="Razão social ou nome fantasia" required>
+        </div>
+        <div class="campo">
+          <label for="cnpj">CNPJ</label>
+          <input id="cnpj" name="cnpj" type="text" inputmode="numeric" placeholder="00.000.000/0000-00" required>
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade e estado de atuação</label>
+          <input id="cidade" name="cidade" type="text" placeholder="Ex.: Rio Branco / AC" required>
+        </div>
+        <div class="campo">
+          <label for="whats">WhatsApp para contato</label>
+          <input id="whats" name="whats" type="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
+        </div>
+        <div class="campo largo">
+          <label for="marcas">Marcas profissionais que já distribui</label>
+          <input id="marcas" name="marcas" type="text" placeholder="Separe por vírgula">
+        </div>
+      </div>
+      <div class="form-acao">
+        <button class="btn btn-cheio" type="submit">Enviar candidatura</button>
+        <p class="aviso" id="aviso">Os dados vão direto para o nosso WhatsApp comercial.</p>
+      </div>
+      <div class="config" id="config">WhatsApp ainda não configurado neste arquivo. Informe o número na constante <strong>WHATSAPP</strong>, no final do código.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ RODAPÉ ============ -->
+<footer>
+  <div class="wrap">
+    <div class="banda curta"></div>
+    <div class="rodape-grade">
+      <p class="assinatura">Uma marca nascida na Aldeia Mushuinu, território Yawanawá.</p>
+      <p class="rodape-info">Arayã Professional · Linha Cipá Native · Uso profissional<br>Produtos fabricados no Brasil.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="flutua" id="flutua" href="#cadastro" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.03c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.13 8.13 0 01-1.25-4.36c0-4.49 3.65-8.14 8.14-8.14s8.14 3.65 8.14 8.14-3.65 8.14-8.04 8.22zm4.47-6.09c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.17-.28.19-.52.07-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.3-.22.24-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.45-.59 1.65-1.17.2-.57.2-1.06.14-1.17-.06-.11-.22-.17-.46-.29z"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   1. WHATSAPP — TROCAR AQUI
+   Formato: código do país + DDD + número, só dígitos.
+   Exemplo: 5568999998888
+   ============================================================ */
+const WHATSAPP = "0000000000000";
+
+/* ============================================================
+   2. PRODUTOS
+   Para usar a foto real, preencha "img" com o caminho do arquivo.
+   Ex.: img: "fotos/shampoo-detox.jpg"
+   ============================================================ */
+const PRODUTOS = [
+  {
+    nome: "Shampoo Detox",
+    img: "",
+    volume: "1 L",
+    claim: "Limpeza equilibrada que remove impurezas e resíduos sem ressecar, com sensação de frescor.",
+    ativos: [
+      ["Extrato Seco de Couve", "Auxilia no cuidado dos fios e do couro cabeludo, com sensação de limpeza e vitalidade."],
+      ["Extrato de Hortelã", "Proporciona refrescância e conforto durante a lavagem."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Aplique sobre os cabelos molhados e massageie suavemente o couro cabeludo e os fios até formar espuma. Enxágue completamente. Se necessário, repita a aplicação.",
+    selos: ["Vegano","Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  },
+  {
+    nome: "Máscara Capilar Efeito Antifrizz",
+    img: "",
+    volume: "1 L",
+    claim: "Tratamento intensivo para controle do frizz e redução de volume, com fios alinhados e disciplinados.",
+    ativos: [
+      ["Óleo de Copaíba", "Ativo amazônico que auxilia na nutrição e proporciona toque sedoso."],
+      ["Manteiga de Murumuru", "Repõe a emoliência natural, favorecendo maciez e flexibilidade."],
+      ["Queratina Hidrolisada", "Auxilia na manutenção da resistência e da elasticidade da fibra."],
+      ["Silsoft CLX-E", "Reduz o frizz, melhora o sensorial e proporciona brilho."],
+      ["Ácido Lático", "Condiciona os fios, deixando-os mais macios e brilhantes."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Faça o teste de sensibilidade 20 minutos antes. Após lavar com shampoo, seque os fios completamente. Divida em mechas e aplique uniformemente, mantendo distância do couro cabeludo, iniciando pela nuca. Deixe agir conforme o protocolo e a avaliação do profissional. Enxágue e finalize conforme a técnica desejada.",
+    selos: ["Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  },
+  {
+    nome: "Máscara Estabilizadora de pH",
+    img: "",
+    volume: "500 g",
+    claim: "Hidratação intensa, maciez e emoliência, com toque sedoso e maior penteabilidade.",
+    ativos: [
+      ["Manteiga de Karité", "Promove nutrição, maciez e emoliência."],
+      ["Óleo de Monoi", "Auxilia na hidratação e proporciona brilho e toque sedoso."],
+      ["Amino Pro 200", "Complexo de aminoácidos que hidrata e condiciona a fibra capilar."],
+      ["Pantenol", "Contribui para a hidratação e a maciez."],
+      ["Blend de Silicones", "Alinha os fios, controla o frizz e promove brilho."],
+      ["Ácido Lático", "Auxilia na hidratação e no condicionamento."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Após lavar os cabelos, aplique no comprimento e nas pontas, massageando mecha a mecha. Deixe agir de 5 a 10 minutos e enxágue completamente. Use de uma a três vezes por semana ou conforme a necessidade dos fios.",
+    selos: ["Vegano","Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  },
+  {
+    nome: "Leave-in Finalizador Térmico",
+    img: "",
+    volume: "200 ml",
+    claim: "Hidrata, facilita o desembaraço e forma um filme condicionante que protege da umidade.",
+    ativos: [
+      ["Óleo de Pracaxi", "Nutre, proporcionando brilho, maciez e melhor penteabilidade."],
+      ["Amino Pro 200", "Complexo de aminoácidos que hidrata e condiciona a fibra capilar."],
+      ["Silsoft CLX-E", "Reduz o frizz, melhora o sensorial e promove brilho."],
+      ["Extrato Glicólico Amazônico", "Ativo vegetal que auxilia na hidratação e no cuidado diário."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Aplique uma pequena quantidade sobre os cabelos úmidos ou secos, distribuindo uniformemente do comprimento às pontas. Não enxágue. Finalize como desejar.",
+    selos: ["Vegano","Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  },
+  {
+    nome: "Óleo Capilar",
+    img: "",
+    volume: "60 ml",
+    claim: "Brilho intenso, maciez e toque sedoso, com acabamento leve e luminoso nas pontas.",
+    ativos: [
+      ["Óleo de Andiroba", "Ativo amazônico que nutre e proporciona maciez e emoliência."],
+      ["Blend de Silicones", "Reduz o frizz, promove brilho e melhora o sensorial."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Aplique algumas gotas na palma das mãos e distribua uniformemente sobre o comprimento e as pontas dos cabelos secos ou úmidos. Não enxágue. Reaplique sempre que necessário.",
+    selos: ["Vegano","Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  },
+  {
+    nome: "Perfume Capilar",
+    img: "",
+    volume: "60 ml",
+    claim: "Floral Musk. Perfuma delicadamente os fios e proporciona sensação de frescor ao longo do dia, sem pesar.",
+    ativos: [
+      ["Notas de saída", "Limão e abacaxi."],
+      ["Notas de corpo", "Jasmim, lírio do vale e sândalo."],
+      ["Notas de fundo", "Caramelo, baunilha, tonka e musk."],
+      ["Extrato de Guaraná", "Ativo vegetal que auxilia no cuidado diário dos fios."],
+      ["Cipá Pro System™", "Hidratação, controle do frizz e proteção contra a umidade."]
+    ],
+    modo: "Borrife sobre os cabelos secos ou úmidos, mantendo distância aproximada de 20 cm dos fios. Reaplique sempre que desejar renovar a perfumação.",
+    selos: ["Vegano","Cruelty-free","Livre de parabenos","Livre de petrolatos"]
+  }
+];
+
+/* ---------- renderização do catálogo ---------- */
+const alvo = document.getElementById("produtos");
+PRODUTOS.forEach((p, i) => {
+  const n = i + 1;
+  const foto = p.img
+    ? `<img src="${p.img}" alt="${p.nome}">`
+    : `<div class="slot r-3x4"><b>PRODUTO ${n}</b>${p.nome}</div>`;
+
+  const det = document.createElement("details");
+  det.className = "produto";
+  det.innerHTML = `
+    <summary class="produto-cabeca">
+      <div class="produto-foto">${foto}</div>
+      <div>
+        <div class="produto-nome">${p.nome}</div>
+        <p class="produto-claim">${p.claim}</p>
+        <div class="produto-volume">${p.volume} · Uso profissional</div>
+      </div>
+      <span class="mais" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+      </span>
+    </summary>
+    <div class="produto-corpo">
+      <div></div>
+      <div class="produto-detalhe">
+        <div class="rotulo-bloco">
+          <h4>Ativos principais</h4>
+          <ul class="ativos">
+            ${p.ativos.map(a => `<li><strong>${a[0]}</strong> — ${a[1]}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="rotulo-bloco">
+          <h4>Modo de uso</h4>
+          <p style="margin:0;max-width:62ch">${p.modo}</p>
+        </div>
+        <div class="rotulo-bloco">
+          <h4>Apelos e selos</h4>
+          <ul class="selos">${p.selos.map(s => `<li>${s}</li>`).join("")}</ul>
+        </div>
+      </div>
+    </div>`;
+  det.querySelector("summary").style.listStyle = "none";
+  alvo.appendChild(det);
+});
+// remove o marcador nativo do summary no Safari
+const estilo = document.createElement("style");
+estilo.textContent = ".produto-cabeca::-webkit-details-marker{display:none}";
+document.head.appendChild(estilo);
+
+/* ---------- cadastro → whatsapp ---------- */
+const form = document.getElementById("form");
+const aviso = document.getElementById("aviso");
+const config = document.getElementById("config");
+const flutua = document.getElementById("flutua");
+const semNumero = !/^\d{12,13}$/.test(WHATSAPP) || /^0+$/.test(WHATSAPP);
+
+if (semNumero) config.classList.add("ativo");
+else flutua.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Vim pela apresentação do Programa de Distribuidores Arayã Professional e gostaria de saber mais.")}`;
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(form).entries());
+  const faltando = ["empresa","cnpj","cidade","whats"].filter(k => !d[k].trim());
+  if (faltando.length) {
+    aviso.textContent = "Preencha distribuidora, CNPJ, cidade e WhatsApp para enviar.";
+    aviso.classList.add("erro");
+    form.querySelector(`[name="${faltando[0]}"]`).focus();
+    return;
+  }
+  if (semNumero) {
+    aviso.textContent = "O número de WhatsApp ainda não foi configurado nesta página.";
+    aviso.classList.add("erro");
+    return;
+  }
+  aviso.classList.remove("erro");
+  aviso.textContent = "Abrindo o WhatsApp com sua candidatura.";
+  const texto =
+    "Candidatura — Programa de Distribuidores Arayã Professional 2026/2027\n\n" +
+    "Distribuidora: " + d.empresa + "\n" +
+    "CNPJ: " + d.cnpj + "\n" +
+    "Cidade/UF: " + d.cidade + "\n" +
+    "WhatsApp: " + d.whats + "\n" +
+    "Marcas que já distribui: " + (d.marcas.trim() || "não informado");
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+});
+
+/* ---------- carrossel da origem ---------- */
+const trilho = document.getElementById("trilho");
+const pontos = document.getElementById("pontos");
+const fotos = [...trilho.children];
+const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function passo(){
+  const g = parseFloat(getComputedStyle(trilho).columnGap) || 0;
+  return fotos[0].getBoundingClientRect().width + g;
+}
+function ultimo(){
+  const visiveis = Math.max(1, Math.round(trilho.clientWidth / passo()));
+  return Math.max(0, fotos.length - visiveis);
+}
+function atual(){ return Math.min(Math.round(trilho.scrollLeft / passo()), ultimo()); }
+function fim(){ return trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 8; }
+
+function montarPontos(){
+  pontos.innerHTML = "";
+  for (let i = 0; i <= ultimo(); i++){
+    const b = document.createElement("button");
+    b.className = "ponto" + (i === atual() ? " ativo" : "");
+    b.type = "button";
+    b.setAttribute("aria-label", `Ir para a posição ${i + 1}`);
+    b.addEventListener("click", () => { pausar(); ir(i); });
+    pontos.appendChild(b);
+  }
+}
+montarPontos();
+let redimensionando;
+window.addEventListener("resize", () => {
+  clearTimeout(redimensionando);
+  redimensionando = setTimeout(montarPontos, 200);
+});
+function ir(i){ trilho.scrollTo({ left: i * passo(), behavior: reduz ? "auto" : "smooth" }); }
+function proxima(){ fim() ? ir(0) : ir(atual() + 1); }
+function anterior(){ trilho.scrollLeft < 8 ? ir(ultimo()) : ir(atual() - 1); }
+
+document.getElementById("proxima").addEventListener("click", () => { pausar(); proxima(); });
+document.getElementById("anterior").addEventListener("click", () => { pausar(); anterior(); });
+
+let marcando;
+trilho.addEventListener("scroll", () => {
+  cancelAnimationFrame(marcando);
+  marcando = requestAnimationFrame(() => {
+    const i = fim() ? ultimo() : atual();
+    [...pontos.children].forEach((p, n) => p.classList.toggle("ativo", n === i));
+  });
+}, { passive: true });
+
+let relogio = null, retomada = null;
+function tocar(){ if (!reduz && !relogio) relogio = setInterval(proxima, 4500); }
+function pausar(){
+  clearInterval(relogio); relogio = null;
+  clearTimeout(retomada);
+  retomada = setTimeout(tocar, 7000);
+}
+["pointerdown","wheel","touchstart","focusin"].forEach(ev =>
+  trilho.addEventListener(ev, pausar, { passive: true })
+);
+trilho.addEventListener("mouseenter", () => { clearInterval(relogio); relogio = null; });
+trilho.addEventListener("mouseleave", tocar);
+document.addEventListener("visibilitychange", () => document.hidden ? (clearInterval(relogio), relogio = null) : tocar());
+tocar();
+
+/* ---------- revelação ---------- */
+const obs = new IntersectionObserver(entradas => {
+  entradas.forEach(en => { if (en.isIntersecting) { en.target.classList.add("visivel"); obs.unobserve(en.target); } });
+}, { threshold: .18 });
+document.querySelectorAll(".rev").forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
