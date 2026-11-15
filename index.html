@@ -188,7 +188,17 @@ img{max-width:100%;display:block;border-radius:10px}
 }
 .trilho::-webkit-scrollbar{display:none}
 .trilho > .foto{flex:0 0 calc((100% - var(--gap) * 2) / 3);scroll-snap-align:start}
-.trilho img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.trilho img,.trilho video{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:10px;background:var(--verde)}
+.trilho-alto img,.trilho-alto video{aspect-ratio:9/16}
+.trilho > .foto{position:relative}
+.som{
+  position:absolute;right:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(21,41,31,.72);color:var(--areia);
+  display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);
+  transition:background .25s ease;
+}
+.som:hover{background:rgba(21,41,31,.92)}
+.som svg{width:17px;height:17px}
 @media (prefers-reduced-motion: reduce){ .trilho{scroll-behavior:auto} }
 .controles{display:flex;align-items:center;gap:.7rem;margin-top:1.5rem}
 .seta{
@@ -261,9 +271,8 @@ img{max-width:100%;display:block;border-radius:10px}
   color:var(--ouro-claro);
 }
 
-/* ---------- resultados ---------- */
-.resultados{background:var(--verde-fundo)}
-.resultados-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,2vw,1.4rem);margin-top:3rem}
+/* ---------- o ritual ---------- */
+.ritual{background:var(--verde-fundo)}
 
 /* ---------- argumentos ---------- */
 .porque{background:var(--verde)}
@@ -334,7 +343,6 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
   .tec-selo{width:min(200px,50vw)}
   .argumentos{grid-template-columns:1fr}
   .argumentos li:nth-child(odd){padding-right:0}
-  .resultados-grade{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:900px){
   .trilho > .foto{flex:0 0 calc((100% - var(--gap)) / 2)}
@@ -367,20 +375,20 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
 
     <!-- carrossel: 4 fotos verticais 3:4 -->
     <div class="carrossel">
-      <div class="trilho" id="trilho" tabindex="0" role="group" aria-label="Fotos da aldeia">
+      <div class="trilho" data-auto="1" tabindex="0" role="group" aria-label="Fotos da aldeia">
         <div class="foto"><img src="fotos/origem-1.jpg" alt="Shampoo Detox Cipá Native sob a copa das árvores" loading="lazy"></div>
         <div class="foto"><img src="fotos/origem-2.jpg" alt="Mulher Yawanawá com pintura tradicional ao lado do Leave-in Cipá Native" loading="lazy"></div>
         <div class="foto"><img src="fotos/origem-3.jpg" alt="Floresta amazônica no território Yawanawá" loading="lazy"></div>
         <div class="foto"><img src="fotos/origem-4.jpg" alt="Linha Cipá Native completa com cocos gravados da marca" loading="lazy"></div>
       </div>
       <div class="controles">
-        <button class="seta" type="button" id="anterior" aria-label="Foto anterior">
+        <button class="seta" type="button" data-dir="-1" aria-label="Foto anterior">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <button class="seta" type="button" id="proxima" aria-label="Próxima foto">
+        <button class="seta" type="button" data-dir="1" aria-label="Próxima foto">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="pontos" id="pontos"></div>
+        <div class="pontos"></div>
       </div>
     </div>
 
@@ -463,17 +471,20 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
   </div>
 </section>
 
-<!-- ============ RESULTADOS ============ -->
-<section class="resultados" id="resultados">
+<!-- ============ O RITUAL ============ -->
+<section class="ritual" id="ritual">
   <div class="wrap">
-    <p class="sobre">Resultados</p>
-    <h2 class="narrow">Trabalhos realizados com a linha completa.</h2>
-    <div class="resultados-grade rev">
-      <!-- TROCAR: antes/depois, corte, progressiva, cabelo ondulado -->
-      <div class="slot r-4x5"><b>RESULTADO 1</b>Antes e depois<span>4:5</span></div>
-      <div class="slot r-4x5"><b>RESULTADO 2</b>Antes e depois<span>4:5</span></div>
-      <div class="slot r-4x5"><b>RESULTADO 3</b>Corte ou progressiva<span>4:5</span></div>
-      <div class="slot r-4x5"><b>RESULTADO 4</b>Finalização<span>4:5</span></div>
+    <p class="sobre">O ritual</p>
+    <h2 class="narrow">Um salão no meio da floresta.</h2>
+    <p class="narrow">O atendimento completo registrado na aldeia, da análise do fio ao resultado final, com a linha Cipá Native do começo ao fim.</p>
+
+    <div class="carrossel">
+      <div class="trilho trilho-alto" id="trilho-ritual" tabindex="0" role="group" aria-label="Sequência do ritual"></div>
+      <div class="controles">
+        <button class="seta" type="button" data-dir="-1" aria-label="Item anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="seta" type="button" data-dir="1" aria-label="Próximo item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="pontos"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -745,70 +756,142 @@ form.addEventListener("submit", e => {
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
 });
 
-/* ---------- carrossel da origem ---------- */
-const trilho = document.getElementById("trilho");
-const pontos = document.getElementById("pontos");
-const fotos = [...trilho.children];
+/* ---------- itens do ritual ---------- */
+const RITUAL = [
+  { tipo:"foto",  src:"fotos/ritual/01.jpg", alt:"Cabelo liso antes do atendimento, na aldeia" },
+  { tipo:"foto",  src:"fotos/ritual/02.jpg", alt:"Shampoo Detox Cipá Native" },
+  { tipo:"video", src:"fotos/ritual/03.mp4", poster:"fotos/ritual/03.jpg" },
+  { tipo:"video", src:"fotos/ritual/04.mp4", poster:"fotos/ritual/04.jpg" },
+  { tipo:"foto",  src:"fotos/ritual/05.jpg", alt:"Shampoo sendo despejado na cuia de coco Arayã" },
+  { tipo:"video", src:"fotos/ritual/06.mp4", poster:"fotos/ritual/06.jpg" },
+  { tipo:"foto",  src:"fotos/ritual/07.jpg", alt:"Pente mergulhando na cuia de coco Arayã" },
+  { tipo:"video", src:"fotos/ritual/08.mp4", poster:"fotos/ritual/08.jpg" },
+  { tipo:"video", src:"fotos/ritual/09.mp4", poster:"fotos/ritual/09.jpg" },
+  { tipo:"video", src:"fotos/ritual/10.mp4", poster:"fotos/ritual/10.jpg" },
+  { tipo:"foto",  src:"fotos/ritual/11.jpg", alt:"Óleo Capilar Cipá Native" },
+  { tipo:"video", src:"fotos/ritual/12.mp4", poster:"fotos/ritual/12.jpg" },
+  { tipo:"foto",  src:"fotos/ritual/13.jpg", alt:"Máscara Estabilizadora de pH sendo retirada do pote" },
+  { tipo:"video", src:"fotos/ritual/14.mp4", poster:"fotos/ritual/14.jpg" },
+  { tipo:"foto",  src:"fotos/ritual/15.jpg", alt:"Leave-in Cipá Native na mão do profissional" },
+  { tipo:"video", src:"fotos/ritual/16.mp4", poster:"fotos/ritual/16.jpg" }
+];
+
+const ICONE_MUDO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9v6h4l5 4V5L8 9H4z" stroke-linejoin="round"/><path d="M17 9l4 6M21 9l-4 6" stroke-linecap="round"/></svg>';
+const ICONE_SOM  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9v6h4l5 4V5L8 9H4z" stroke-linejoin="round"/><path d="M17 8.5a5 5 0 010 7M19.5 6a8.5 8.5 0 010 12" stroke-linecap="round"/></svg>';
+
+const trilhoRitual = document.getElementById("trilho-ritual");
+RITUAL.forEach((item, i) => {
+  const caixa = document.createElement("div");
+  caixa.className = "foto";
+  if (item.tipo === "foto") {
+    caixa.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy">`;
+  } else {
+    caixa.innerHTML =
+      `<video src="${item.src}" poster="${item.poster}" muted loop playsinline preload="none" aria-label="Etapa ${i + 1} do ritual"></video>` +
+      `<button class="som" type="button" aria-label="Ativar som">${ICONE_MUDO}</button>`;
+    const video = caixa.querySelector("video");
+    caixa.querySelector(".som").addEventListener("click", e => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      e.currentTarget.innerHTML = video.muted ? ICONE_MUDO : ICONE_SOM;
+      e.currentTarget.setAttribute("aria-label", video.muted ? "Ativar som" : "Desativar som");
+      if (!video.muted) video.play().catch(() => {});
+    });
+  }
+  trilhoRitual.appendChild(caixa);
+});
+
+/* vídeo toca ao entrar em tela e para ao sair */
+const olhoVideo = new IntersectionObserver(entradas => {
+  entradas.forEach(en => {
+    const v = en.target;
+    if (en.isIntersecting) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+      v.muted = true;
+      const b = v.parentElement.querySelector(".som");
+      if (b) { b.innerHTML = ICONE_MUDO; b.setAttribute("aria-label", "Ativar som"); }
+    }
+  });
+}, { threshold: .6 });
+trilhoRitual.querySelectorAll("video").forEach(v => olhoVideo.observe(v));
+
+/* ---------- carrosséis ---------- */
 const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function passo(){
-  const g = parseFloat(getComputedStyle(trilho).columnGap) || 0;
-  return fotos[0].getBoundingClientRect().width + g;
-}
-function ultimo(){
-  const visiveis = Math.max(1, Math.round(trilho.clientWidth / passo()));
-  return Math.max(0, fotos.length - visiveis);
-}
-function atual(){ return Math.min(Math.round(trilho.scrollLeft / passo()), ultimo()); }
-function fim(){ return trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 8; }
+function montarCarrossel(carrossel){
+  const trilho = carrossel.querySelector(".trilho");
+  const pontos = carrossel.querySelector(".pontos");
+  const itens = [...trilho.children];
+  const auto = trilho.dataset.auto === "1";
+  if (!itens.length) return;
 
-function montarPontos(){
-  pontos.innerHTML = "";
-  for (let i = 0; i <= ultimo(); i++){
-    const b = document.createElement("button");
-    b.className = "ponto" + (i === atual() ? " ativo" : "");
-    b.type = "button";
-    b.setAttribute("aria-label", `Ir para a posição ${i + 1}`);
-    b.addEventListener("click", () => { pausar(); ir(i); });
-    pontos.appendChild(b);
+  const passo = () => {
+    const g = parseFloat(getComputedStyle(trilho).columnGap) || 0;
+    return itens[0].getBoundingClientRect().width + g;
+  };
+  const ultimo = () => {
+    const visiveis = Math.max(1, Math.round(trilho.clientWidth / passo()));
+    return Math.max(0, itens.length - visiveis);
+  };
+  const atual = () => Math.min(Math.round(trilho.scrollLeft / passo()), ultimo());
+  const fim = () => trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 8;
+  const ir = i => trilho.scrollTo({ left: i * passo(), behavior: reduz ? "auto" : "smooth" });
+  const proxima = () => fim() ? ir(0) : ir(atual() + 1);
+  const anterior = () => trilho.scrollLeft < 8 ? ir(ultimo()) : ir(atual() - 1);
+
+  function montarPontos(){
+    pontos.innerHTML = "";
+    for (let i = 0; i <= ultimo(); i++){
+      const b = document.createElement("button");
+      b.className = "ponto" + (i === atual() ? " ativo" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", `Ir para a posição ${i + 1}`);
+      b.addEventListener("click", () => { pausar(); ir(i); });
+      pontos.appendChild(b);
+    }
   }
-}
-montarPontos();
-let redimensionando;
-window.addEventListener("resize", () => {
-  clearTimeout(redimensionando);
-  redimensionando = setTimeout(montarPontos, 200);
-});
-function ir(i){ trilho.scrollTo({ left: i * passo(), behavior: reduz ? "auto" : "smooth" }); }
-function proxima(){ fim() ? ir(0) : ir(atual() + 1); }
-function anterior(){ trilho.scrollLeft < 8 ? ir(ultimo()) : ir(atual() - 1); }
 
-document.getElementById("proxima").addEventListener("click", () => { pausar(); proxima(); });
-document.getElementById("anterior").addEventListener("click", () => { pausar(); anterior(); });
+  carrossel.querySelectorAll(".seta").forEach(btn =>
+    btn.addEventListener("click", () => {
+      pausar();
+      Number(btn.dataset.dir) > 0 ? proxima() : anterior();
+    })
+  );
 
-let marcando;
-trilho.addEventListener("scroll", () => {
-  cancelAnimationFrame(marcando);
-  marcando = requestAnimationFrame(() => {
-    const i = fim() ? ultimo() : atual();
-    [...pontos.children].forEach((p, n) => p.classList.toggle("ativo", n === i));
+  let marcando;
+  trilho.addEventListener("scroll", () => {
+    cancelAnimationFrame(marcando);
+    marcando = requestAnimationFrame(() => {
+      const i = fim() ? ultimo() : atual();
+      [...pontos.children].forEach((p, n) => p.classList.toggle("ativo", n === i));
+    });
+  }, { passive: true });
+
+  let relogio = null, retomada = null;
+  function tocar(){ if (auto && !reduz && !relogio) relogio = setInterval(proxima, 4500); }
+  function pausar(){
+    clearInterval(relogio); relogio = null;
+    clearTimeout(retomada);
+    if (auto) retomada = setTimeout(tocar, 7000);
+  }
+  ["pointerdown","wheel","touchstart","focusin"].forEach(ev =>
+    trilho.addEventListener(ev, pausar, { passive: true })
+  );
+  trilho.addEventListener("mouseenter", () => { clearInterval(relogio); relogio = null; });
+  trilho.addEventListener("mouseleave", tocar);
+  document.addEventListener("visibilitychange", () => document.hidden ? (clearInterval(relogio), relogio = null) : tocar());
+
+  montarPontos();
+  let redimensionando;
+  window.addEventListener("resize", () => {
+    clearTimeout(redimensionando);
+    redimensionando = setTimeout(montarPontos, 200);
   });
-}, { passive: true });
-
-let relogio = null, retomada = null;
-function tocar(){ if (!reduz && !relogio) relogio = setInterval(proxima, 4500); }
-function pausar(){
-  clearInterval(relogio); relogio = null;
-  clearTimeout(retomada);
-  retomada = setTimeout(tocar, 7000);
+  tocar();
 }
-["pointerdown","wheel","touchstart","focusin"].forEach(ev =>
-  trilho.addEventListener(ev, pausar, { passive: true })
-);
-trilho.addEventListener("mouseenter", () => { clearInterval(relogio); relogio = null; });
-trilho.addEventListener("mouseleave", tocar);
-document.addEventListener("visibilitychange", () => document.hidden ? (clearInterval(relogio), relogio = null) : tocar());
-tocar();
+document.querySelectorAll(".carrossel").forEach(montarCarrossel);
 
 /* ---------- revelação ---------- */
 const obs = new IntersectionObserver(entradas => {
