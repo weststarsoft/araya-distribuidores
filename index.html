@@ -226,6 +226,7 @@ img{max-width:100%;display:block;border-radius:10px}
 .tec{background:var(--verde-fundo)}
 .tec-grade{display:grid;grid-template-columns:260px 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
 .tec-selo .slot{border-radius:50%;aspect-ratio:1}
+.tec-selo img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;display:block}
 .tec-lista{list-style:none;padding:0;margin:1.8rem 0 0;display:grid;gap:.9rem}
 .tec-lista li{display:flex;gap:.9rem;align-items:baseline}
 .tec-lista li::before{content:"";width:9px;height:9px;flex:none;background:var(--ouro);transform:rotate(45deg);translate:0 -1px}
@@ -442,8 +443,7 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
   <div class="wrap">
     <div class="tec-grade">
       <div class="tec-selo rev">
-        <!-- TROCAR: selo Cipá Pro System em PNG transparente -->
-        <div class="slot r-1x1"><b>SELO</b>Cipá Pro System<span>PNG quadrado</span></div>
+        <img src="fotos/selo-cipa-pro.png" alt="Selo Cipá Pro System">
       </div>
       <div>
         <p class="sobre">Tecnologia exclusiva</p>
