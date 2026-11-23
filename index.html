@@ -411,6 +411,7 @@ footer{background:var(--verde);padding:clamp(3rem,6vw,4.5rem) 0 calc(clamp(3rem,
       <div class="hero-acoes">
         <a class="btn btn-cheio" href="#cadastro">Cadastrar minha distribuidora</a>
         <a class="btn" href="#catalogo">Conhecer a linha</a>
+        <a class="btn" id="contato" href="#" target="_blank" rel="noopener">Entre em contato conosco</a>
       </div>
     </div>
   </div>
@@ -723,10 +724,16 @@ const form = document.getElementById("form");
 const aviso = document.getElementById("aviso");
 const config = document.getElementById("config");
 const flutua = document.getElementById("flutua");
+const contato = document.getElementById("contato");
 const semNumero = !/^\d{12,13}$/.test(WHATSAPP) || /^0+$/.test(WHATSAPP);
+const mensagemContato = "Olá! Quero conhecer mais sobre o Programa de Distribuidores Arayã Professional.";
 
 if (semNumero) config.classList.add("ativo");
-else flutua.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Vim pela apresentação do Programa de Distribuidores Arayã Professional e gostaria de saber mais.")}`;
+else {
+  const linkContato = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagemContato)}`;
+  flutua.href = linkContato;
+  contato.href = linkContato;
+}
 
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -746,7 +753,8 @@ form.addEventListener("submit", e => {
   aviso.classList.remove("erro");
   aviso.textContent = "Abrindo o WhatsApp com sua candidatura.";
   const texto =
-    "Candidatura — Programa de Distribuidores Arayã Professional 2026/2027\n\n" +
+    "Olá, quero conhecer mais sobre o Programa de Distribuidores Arayã Professional 2026/2027.\n\n" +
+    "Estas são minhas informações:\n\n" +
     "Distribuidora: " + d.empresa + "\n" +
     "CNPJ: " + d.cnpj + "\n" +
     "Cidade/UF: " + d.cidade + "\n" +
